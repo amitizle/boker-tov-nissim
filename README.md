@@ -8,6 +8,10 @@ Docs and README :)
 Because I wanted to write a _Telegram_ bot in _Elixir_.
 As a fan of Erlang/OTP, I wanted to give it a shot, it's 🔥.
 
+#### But isn't it an overkill for this kind of project?
+
+It probably is. See _Why Elixir?_
+
 ## Building
 
 Using the battery included `Makefile`;
