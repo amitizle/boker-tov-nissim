@@ -1,0 +1,23 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# All Vagrant configuration is done below. The "2" in Vagrant.configure
+# configures the configuration version (we support older styles for
+# backwards compatibility). Please don't change it unless you know what
+# you're doing.
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/xenial64"
+  if Vagrant.has_plugin?('vagrant-vbguest')
+    config.vbguest.auto_update = true
+  end
+  config.vm.synced_folder(File.expand_path('..') , '/home/ubuntu/boker_tov_nissim')
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = "1024"
+  end
+  Dir.glob(File.join(__dir__, 'provision_scripts', '*.sh')).sort do |a, b|
+    a.split('_').first.to_i <=> b.split('_').first.to_i
+  end.each do |script|
+    config.vm.provision 'shell', path: script
+  end
+end
